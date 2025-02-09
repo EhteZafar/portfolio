@@ -175,7 +175,7 @@ export default function Home() {
                         </svg>
                       </a>
                       <a
-                        href="https://linkedin.com/in/ehtesham-zafar-8a500821b"
+                        href="https://www.linkedin.com/in/muhammad-ehtesham-uz-zafar-zafar-8a500821b/"
                         target="_blank"
                         rel="noopener noreferrer"
                         className="text-foreground/60 hover:text-foreground transition-colors"
@@ -185,13 +185,13 @@ export default function Home() {
                         </svg>
                       </a>
                       <a
-                        href="https://twitter.com/yourusername"
+                        href="https://www.xing.com/profile/Ehtesham_Zafar/web_profiles?expandNeffi=true"
                         target="_blank"
                         rel="noopener noreferrer"
                         className="text-foreground/60 hover:text-foreground transition-colors"
                       >
                         <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                          <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                          <path d="M18.188 0c-.517 0-.741.325-.927.66 0 0-7.455 13.224-7.702 13.657.015.024 4.919 9.023 4.919 9.023.17.308.436.66.967.66h3.454c.211 0 .375-.078.463-.22.089-.151.089-.346-.009-.536l-4.879-8.916c-.004-.006-.004-.016 0-.022L22.139.756c.095-.191.097-.387.006-.535C22.056.078 21.894 0 21.686 0h-3.498zM3.648 4.74c-.211 0-.385.074-.473.216-.09.149-.078.339.02.531l2.34 4.05c.004.01.004.016 0 .021L1.86 16.051c-.099.188-.093.381 0 .529.085.142.239.234.45.234h3.461c.518 0 .766-.348.945-.667l3.734-6.609-2.378-4.155c-.172-.315-.434-.659-.962-.659H3.648v.016z"/>
                         </svg>
                       </a>
                     </div>

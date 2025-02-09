@@ -20,21 +20,24 @@ export function ProjectCard({
   githubUrl,
 }: ProjectCardProps) {
   return (
-    <div className="group bg-foreground/[0.02] rounded-2xl overflow-hidden border border-foreground/10">
+    <div className="group bg-foreground/[0.02] backdrop-blur-sm rounded-2xl overflow-hidden border border-foreground/10 transition-all duration-300 hover:bg-foreground/[0.04]">
       {/* Image Container */}
-      <div className="relative w-full h-64 overflow-hidden">
+      <div className="relative w-full h-64 overflow-hidden bg-gradient-to-b from-transparent via-foreground/[0.02] to-foreground/[0.04]">
+        <div className="absolute inset-0 bg-grid-white/[0.01] bg-[size:20px_20px]" />
         <Image
           src={image}
           alt={title}
           fill
-          className="object-contain bg-background p-2"
+          className="object-contain mix-blend-luminosity hover:mix-blend-normal transition-all duration-300 p-4"
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
         />
       </div>
 
       {/* Content */}
       <div className="p-6 space-y-4">
-        <h3 className="text-xl font-semibold">{title}</h3>
+        <h3 className="text-xl font-semibold group-hover:text-primary transition-colors">
+          {title}
+        </h3>
         <p className="text-foreground/80">{description}</p>
 
         {/* Tags */}
@@ -42,7 +45,7 @@ export function ProjectCard({
           {tags.map((tag) => (
             <span
               key={tag}
-              className="px-3 py-1 text-sm bg-primary/10 text-primary rounded-full"
+              className="px-3 py-1 text-sm bg-primary/5 text-primary/80 rounded-full border border-primary/10"
             >
               {tag}
             </span>
