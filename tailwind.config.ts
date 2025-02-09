@@ -24,6 +24,12 @@ export default {
         "slideRight": "slideRight 1s ease-out forwards",
         "gradient": "gradient 15s ease infinite",
         "grid-flow": "grid-flow 20s linear infinite",
+        "pulse-slow": "pulse 8s cubic-bezier(0.4, 0, 0.6, 1) infinite",
+        "pulse-slower": "pulse 10s cubic-bezier(0.4, 0, 0.6, 1) infinite",
+        "float-0": "float1 15s ease-in-out infinite",
+        "float-1": "float2 20s ease-in-out infinite",
+        "float-2": "float3 18s ease-in-out infinite",
+        "float-3": "float4 12s ease-in-out infinite",
       },
       keyframes: {
         "grid-fade": {
@@ -73,7 +79,23 @@ export default {
         "grid-flow": {
           "0%": { transform: "translateY(0)" },
           "100%": { transform: "translateY(80px)" }
-        }
+        },
+        float1: {
+          "0%, 100%": { transform: "translate(0, 0) rotate(0)" },
+          "50%": { transform: "translate(120px, 60px) rotate(180deg)" },
+        },
+        float2: {
+          "0%, 100%": { transform: "translate(0, 0) rotate(0)" },
+          "50%": { transform: "translate(-100px, 100px) rotate(-180deg)" },
+        },
+        float3: {
+          "0%, 100%": { transform: "translate(0, 0) rotate(0)" },
+          "50%": { transform: "translate(80px, -80px) rotate(90deg)" },
+        },
+        float4: {
+          "0%, 100%": { transform: "translate(0, 0) rotate(0)" },
+          "50%": { transform: "translate(-60px, -60px) rotate(-90deg)" },
+        },
       },
       transitionProperty: {
         colors: "color, background-color, border-color, text-decoration-color, fill, stroke",
