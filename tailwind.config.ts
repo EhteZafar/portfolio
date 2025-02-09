@@ -22,6 +22,8 @@ export default {
         "blink": "blink 1s step-end infinite",
         "fade-slide": "fade-slide 0.6s ease forwards",
         "slideRight": "slideRight 1s ease-out forwards",
+        "gradient": "gradient 15s ease infinite",
+        "grid-flow": "grid-flow 20s linear infinite",
       },
       keyframes: {
         "grid-fade": {
@@ -58,6 +60,20 @@ export default {
           '0%': { width: '0%' },
           '100%': { width: '100%' },
         },
+        "gradient": {
+          "0%, 100%": {
+            "background-size": "200% 200%",
+            "background-position": "left center"
+          },
+          "50%": {
+            "background-size": "200% 200%",
+            "background-position": "right center"
+          }
+        },
+        "grid-flow": {
+          "0%": { transform: "translateY(0)" },
+          "100%": { transform: "translateY(80px)" }
+        }
       },
       transitionProperty: {
         colors: "color, background-color, border-color, text-decoration-color, fill, stroke",

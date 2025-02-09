@@ -34,9 +34,23 @@ const projects = [
 export default function Home() {
   return (
     <PageTransition>
+      {/* Background Elements */}
+      <div className="fixed inset-0 -z-10">
+        {/* Gradient Background */}
+        <div className="absolute inset-0 bg-gradient-to-br from-background via-primary/5 to-background/80 animate-gradient" />
+        
+        {/* Grid Pattern */}
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_110%)] animate-grid-flow" />
+        
+        {/* Radial Gradients */}
+        <div className="absolute -top-24 -left-24 w-96 h-96 bg-primary/10 rounded-full blur-3xl opacity-20" />
+        <div className="absolute -top-12 -right-12 w-96 h-96 bg-primary/20 rounded-full blur-3xl opacity-20" />
+        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-full h-1/2 bg-gradient-to-t from-background to-transparent" />
+      </div>
+
       <ThemeToggle />
       <Navigation />
-      <main className="min-h-screen">
+      <main className="relative min-h-screen">
         {/* Hero Section */}
         <section className="relative h-screen flex items-center justify-center bg-gradient-to-br from-background via-background to-background/95">
           {/* Animated background grid */}
@@ -103,8 +117,9 @@ export default function Home() {
 
         {/* About Section */}
         <SectionTransition>
-          <section className="relative py-20 bg-foreground/[0.02]" id="about">
-            <div className="container mx-auto px-8 md:px-16 xl:px-20">
+          <section className="relative py-20" id="about">
+            <div className="absolute inset-0 bg-foreground/[0.01] backdrop-blur-[2px]" />
+            <div className="relative container mx-auto px-8 md:px-16 xl:px-20">
               <div className="mb-16 md:w-2/3 lg:w-1/2">
                 <h2 className="mb-4 text-2xl font-bold text-foreground md:text-4xl">
                   About Me
