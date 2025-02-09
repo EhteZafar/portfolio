@@ -1,13 +1,9 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Swiper as SwiperType } from 'swiper';
-import { Swiper, SwiperSlide } from "swiper/react";
-import { EffectCards, Autoplay, Navigation } from "swiper/modules";
-
-// Import Swiper styles
-import "swiper/css";
-import "swiper/css/effect-cards";
+import { motion, AnimatePresence } from "framer-motion";
+import useEmblaCarousel from 'embla-carousel-react';
+import { useCallback } from "react";
 
 interface Skill {
   name: string;
@@ -78,130 +74,129 @@ const skillCategories: SkillCategory[] = [
 ];
 
 export function Skills() {
+  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true });
+  const [selectedIndex, setSelectedIndex] = useState(0);
   const [isMounted, setIsMounted] = useState(false);
-  const [swiper, setSwiper] = useState<SwiperType | null>(null);
-  const [activeIndex, setActiveIndex] = useState(0);
 
   useEffect(() => {
     setIsMounted(true);
   }, []);
 
-  if (!isMounted) {
-    return null;
-  }
-
-  const handlePrev = () => {
-    if (swiper) {
-      swiper.slidePrev();
+  useEffect(() => {
+    if (emblaApi) {
+      emblaApi.on('select', () => {
+        setSelectedIndex(emblaApi.selectedScrollSnap());
+      });
     }
-  };
+  }, [emblaApi]);
 
-  const handleNext = () => {
-    if (swiper) {
-      swiper.slideNext();
-    }
-  };
+  const scrollPrev = useCallback(() => {
+    if (emblaApi) emblaApi.scrollPrev();
+  }, [emblaApi]);
+
+  const scrollNext = useCallback(() => {
+    if (emblaApi) emblaApi.scrollNext();
+  }, [emblaApi]);
+
+  if (!isMounted) return null;
 
   return (
-    <div className="relative h-[500px] flex flex-col items-center overflow-hidden">
+    <div className="relative h-[500px] flex flex-col items-center">
       <div className="w-full max-w-md overflow-visible">
-        <Swiper
-          effect="cards"
-          grabCursor={true}
-          modules={[EffectCards, Autoplay, Navigation]}
-          className="w-full !overflow-visible"
-          onSwiper={setSwiper}
-          onSlideChange={(swiper) => setActiveIndex(swiper.activeIndex)}
-          autoplay={{ delay: 10000, disableOnInteraction: false }}
-          cardsEffect={{
-            perSlideOffset: 15,
-            perSlideRotate: 4,
-            rotate: true,
-            slideShadows: true,
-          }}
-        >
-          {skillCategories.map((category, index) => (
-            <SwiperSlide key={category.title} className="!w-[100%]">
-              <div 
-                className={`bg-gradient-to-br ${category.bgColor} p-8 rounded-2xl h-full 
-                  backdrop-blur-sm border border-foreground/10 shadow-xl
-                  transition-all duration-500
-                  ${activeIndex === index 
-                    ? 'opacity-100 scale-100 z-10' 
-                    : 'opacity-50 scale-95 -z-10'}`}
+        <div className="relative" ref={emblaRef}>
+          <div className="flex touch-pan-y">
+            {skillCategories.map((category, index) => (
+              <div
+                key={category.title}
+                className="flex-[0_0_100%] min-w-0"
               >
-                <div className="flex items-center gap-3 mb-6">
-                  <span className="text-2xl">{category.icon}</span>
-                  <h3 className="text-xl font-semibold text-foreground">{category.title}</h3>
-                </div>
+                <motion.div
+                  initial={{ scale: 0.8, opacity: 0 }}
+                  animate={{
+                    scale: selectedIndex === index ? 1 : 0.8,
+                    opacity: selectedIndex === index ? 1 : 0.5,
+                  }}
+                  transition={{ duration: 0.4 }}
+                  className={`bg-gradient-to-br ${category.bgColor} p-8 rounded-2xl h-full 
+                    backdrop-blur-sm border border-foreground/10 shadow-xl mx-4`}
+                >
+                  <motion.div
+                    initial={{ y: 20, opacity: 0 }}
+                    animate={{ y: 0, opacity: 1 }}
+                    transition={{ delay: 0.2 }}
+                    className="flex items-center gap-3 mb-6"
+                  >
+                    <span className="text-2xl">{category.icon}</span>
+                    <h3 className="text-xl font-semibold text-foreground">{category.title}</h3>
+                  </motion.div>
 
-                <div className={`space-y-4 transition-opacity duration-500 
-                  ${activeIndex === index ? 'opacity-100' : 'opacity-0'}`}>
-                  {category.skills.map((skill) => (
-                    <div key={skill.name}>
-                      <div className="flex justify-between mb-2">
-                        <span className="font-medium text-foreground">{skill.name}</span>
-                        <span className="text-foreground/80">{skill.level}%</span>
-                      </div>
-                      <div className="h-2 bg-foreground/20 rounded-full overflow-hidden">
-                        <div
-                          className={`h-full rounded-full transition-all duration-1000
-                            ${activeIndex === index ? 'animate-slideRight' : 'w-0'}`}
-                          style={{
-                            width: activeIndex === index ? `${skill.level}%` : '0%',
-                            backgroundColor: skill.color,
-                          }}
-                        />
-                      </div>
-                    </div>
-                  ))}
-                </div>
+                  <div className="space-y-4">
+                    <AnimatePresence mode="wait">
+                      {selectedIndex === index && (
+                        <motion.div
+                          initial={{ opacity: 0, y: 20 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          exit={{ opacity: 0, y: -20 }}
+                          transition={{ staggerChildren: 0.1 }}
+                          className="space-y-4"
+                        >
+                          {category.skills.map((skill, skillIndex) => (
+                            <motion.div
+                              key={skill.name}
+                              initial={{ opacity: 0, x: -20 }}
+                              animate={{ opacity: 1, x: 0 }}
+                              transition={{ delay: skillIndex * 0.1 }}
+                            >
+                              <div className="flex justify-between mb-2">
+                                <span className="font-medium text-foreground">{skill.name}</span>
+                                <span className="text-foreground/80">{skill.level}%</span>
+                              </div>
+                              <div className="h-2 bg-foreground/20 rounded-full overflow-hidden">
+                                <motion.div
+                                  initial={{ width: 0 }}
+                                  animate={{ width: `${skill.level}%` }}
+                                  transition={{ duration: 1, delay: 0.2 + skillIndex * 0.1 }}
+                                  className="h-full rounded-full"
+                                  style={{ backgroundColor: skill.color }}
+                                />
+                              </div>
+                            </motion.div>
+                          ))}
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  </div>
+                </motion.div>
               </div>
-            </SwiperSlide>
-          ))}
-        </Swiper>
+            ))}
+          </div>
+        </div>
       </div>
 
       {/* Navigation Buttons */}
       <div className="flex justify-center gap-4 mt-8">
-        <button
-          onClick={handlePrev}
+        <motion.button
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.9 }}
+          onClick={scrollPrev}
           className="p-2 rounded-full bg-foreground/20 hover:bg-foreground/30 transition-colors"
           aria-label="Previous slide"
         >
-          <svg 
-            className="w-6 h-6" 
-            fill="none" 
-            viewBox="0 0 24 24" 
-            stroke="currentColor"
-          >
-            <path 
-              strokeLinecap="round" 
-              strokeLinejoin="round" 
-              strokeWidth={2} 
-              d="M15 19l-7-7 7-7" 
-            />
+          <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
           </svg>
-        </button>
-        <button
-          onClick={handleNext}
+        </motion.button>
+        <motion.button
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.9 }}
+          onClick={scrollNext}
           className="p-2 rounded-full bg-foreground/20 hover:bg-foreground/30 transition-colors"
           aria-label="Next slide"
         >
-          <svg 
-            className="w-6 h-6" 
-            fill="none" 
-            viewBox="0 0 24 24" 
-            stroke="currentColor"
-          >
-            <path 
-              strokeLinecap="round" 
-              strokeLinejoin="round" 
-              strokeWidth={2} 
-              d="M9 5l7 7-7 7" 
-            />
+          <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
           </svg>
-        </button>
+        </motion.button>
       </div>
     </div>
   );
