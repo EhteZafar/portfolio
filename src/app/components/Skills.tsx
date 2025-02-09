@@ -103,13 +103,13 @@ export function Skills() {
   };
 
   return (
-    <div className="relative h-[500px] flex flex-col items-center">
-      <div className="w-full max-w-md">
+    <div className="relative h-[500px] flex flex-col items-center overflow-hidden">
+      <div className="w-full max-w-md overflow-visible">
         <Swiper
           effect="cards"
           grabCursor={true}
           modules={[EffectCards, Autoplay, Navigation]}
-          className="w-full"
+          className="w-full !overflow-visible"
           onSwiper={setSwiper}
           onSlideChange={(swiper) => setActiveIndex(swiper.activeIndex)}
           autoplay={{ delay: 10000, disableOnInteraction: false }}
