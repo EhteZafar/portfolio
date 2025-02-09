@@ -78,7 +78,7 @@ const skillCategories: SkillCategory[] = [
 
 export function Skills() {
   const [isMounted, setIsMounted] = useState(false);
-  const [swiper, setSwiper] = useState<any>(null);
+  const [swiper, setSwiper] = useState<unknown>(null);
   const [activeIndex, setActiveIndex] = useState(0);
 
   useEffect(() => {

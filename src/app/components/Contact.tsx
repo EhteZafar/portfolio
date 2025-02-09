@@ -20,7 +20,7 @@ export function Contact() {
       await new Promise(resolve => setTimeout(resolve, 1000));
       setSubmitStatus("success");
       setFormData({ name: "", email: "", message: "" });
-    } catch (error) {
+    } catch {
       setSubmitStatus("error");
     } finally {
       setIsSubmitting(false);
@@ -32,10 +32,10 @@ export function Contact() {
       {/* Contact Information */}
       <div className="space-y-8">
         <div>
-          <h3 className="text-xl font-semibold mb-4">Let's Connect</h3>
+          <h3 className="text-xl font-semibold mb-4">Let&apos;s Connect</h3>
           <p className="text-foreground/80">
             Feel free to reach out for collaborations, opportunities, or just to say hello! 
-            I'll get back to you as soon as possible.
+            I&apos;ll get back to you as soon as possible.
           </p>
         </div>
 

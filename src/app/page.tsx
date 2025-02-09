@@ -115,18 +115,18 @@ export default function Home() {
               <div className="grid gap-16 md:grid-cols-2">
                 <div className="space-y-6 [&>p]:text-foreground/80">
                   <p>
-                    Hello! I'm Ehtesham, a Software Engineer pursuing my Master's in Distributed Systems Engineering
+                    Hello! I&apos;m Ehtesham, a Software Engineer pursuing my Master&apos;s in Distributed Systems Engineering
                     at TU Dresden. With a strong academic background and professional experience, I specialize in
                     building modern web applications and scalable systems.
                   </p>
                   <p>
                     My experience includes working at Share Mobility, where I developed automation systems and
                     enhanced platform performance, and at DotClick, where I built scalable e-commerce solutions.
-                    I'm particularly passionate about cloud technologies, distributed systems, and modern web frameworks.
+                    I&apos;m particularly passionate about cloud technologies, distributed systems, and modern web frameworks.
                   </p>
                   <p>
-                    When I'm not coding, you'll find me playing outdoor sports like football and badminton,
-                    enjoying a game of chess, or exploring new technologies. I'm always eager to learn and
+                    When I&apos;m not coding, you&apos;ll find me playing outdoor sports like football and badminton,
+                    enjoying a game of chess, or exploring new technologies. I&apos;m always eager to learn and
                     contribute to innovative projects.
                   </p>
                   
