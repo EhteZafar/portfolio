@@ -26,7 +26,7 @@ export function Footer() {
                 { label: "Projects", href: "#projects" },
                 { label: "Experience", href: "#experience" },
                 { label: "Contact", href: "#contact" },
-                { label: "Download CV", href: "/Jan-Ehtesham-CV.pdf" },
+                { label: "Download CV", href: "/Ehtesham_CV.pdf" },
               ].map(({ label, href }) => (
                 <li key={href}>
                   <a

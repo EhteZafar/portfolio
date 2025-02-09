@@ -115,7 +115,7 @@ export default function Home() {
 
                 <div className="flex gap-4 justify-center motion-safe:animate-fade">
                   <a
-                    href="/Jan-Ehtesham-CV.pdf"
+                    href="/Ehtesham_CV.pdf"
                     className="px-6 py-3 rounded-full bg-foreground text-background font-medium hover:bg-foreground/90 transition"
                   >
                     Download CV
