@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { Swiper as SwiperType } from 'swiper';
 import { Swiper, SwiperSlide } from "swiper/react";
 import { EffectCards, Autoplay, Navigation } from "swiper/modules";
 
@@ -78,7 +79,7 @@ const skillCategories: SkillCategory[] = [
 
 export function Skills() {
   const [isMounted, setIsMounted] = useState(false);
-  const [swiper, setSwiper] = useState<unknown>(null);
+  const [swiper, setSwiper] = useState<SwiperType | null>(null);
   const [activeIndex, setActiveIndex] = useState(0);
 
   useEffect(() => {
@@ -88,6 +89,18 @@ export function Skills() {
   if (!isMounted) {
     return null;
   }
+
+  const handlePrev = () => {
+    if (swiper) {
+      swiper.slidePrev();
+    }
+  };
+
+  const handleNext = () => {
+    if (swiper) {
+      swiper.slideNext();
+    }
+  };
 
   return (
     <div className="relative h-[500px] flex flex-col items-center">
@@ -152,7 +165,7 @@ export function Skills() {
       {/* Navigation Buttons */}
       <div className="flex justify-center gap-4 mt-8">
         <button
-          onClick={() => swiper?.slidePrev()}
+          onClick={handlePrev}
           className="p-2 rounded-full bg-foreground/20 hover:bg-foreground/30 transition-colors"
           aria-label="Previous slide"
         >
@@ -171,7 +184,7 @@ export function Skills() {
           </svg>
         </button>
         <button
-          onClick={() => swiper?.slideNext()}
+          onClick={handleNext}
           className="p-2 rounded-full bg-foreground/20 hover:bg-foreground/30 transition-colors"
           aria-label="Next slide"
         >
